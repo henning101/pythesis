@@ -1,5 +1,13 @@
 \section{A MATLAB Plot}
 \label{sec:a-matlab-plot}
+In order to generate MATLAB plots PyThesis needs to be started with the MATLAB flag:
+\begin{verbatim}
+python start.py [...] --matlab
+\end{verbatim}
+The MATLAB Python engine must be installed and MATLAB must be running. In order to share the MATLAB engine, enter the following command into the MATLAB terminal:
+\begin{verbatim}
+matlab.engine.shareEngine
+\end{verbatim}
 The following uses the \_matlab singleton, the \_templater and \_dataset to generate a MATLAB plot:  
 \begin{python}
 {% subinclude '_tex/a_matlab_plot_source' %}

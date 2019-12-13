@@ -6,7 +6,10 @@ if not(_matlab == None):
         {'key': 'T_02'}
     ]
     _matlab.load_dataset(f'{_data}/example.csv', _name, columns)
-    _matlab.eval_template(f'{_templates}/matlab/figure.m')
+    _matlab.eval_template(
+        f'{_templates}/matlab/figure.m',
+        height=300
+    )
     code = f'''
         hold on;
         p1 = plot( ...
