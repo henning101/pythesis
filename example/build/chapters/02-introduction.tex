@@ -1,0 +1,34 @@
+\chapter{Introduction}
+\section{Installation}
+
+\subsection{Install \LaTeX}
+In order to compile \LaTeX files, a \LaTeX distribution needs to be installed. PyThesis executes pdflatex to generate a PDF file after transpiling the source files. For Windows, the proTeXt distribution is recommended: \url{https://www.tug.org/protext/}
+
+\subsection{Python Dependencies}
+The software was tested using Python 3.6. Installation using pip: 
+\begin{verbatim}
+pip install numpy
+pip install jinja2
+pip install flask
+pip install flask_cors
+\end{verbatim}
+In Linux use pip3 instead.
+
+\subsection{MATLAB Engine API for Python}
+Follow the Mathworks tutorial: \url{https://de.mathworks.com/help/matlab/matlab_external/install-the-matlab-engine-for-python.html}
+
+\subsection{Browser App}
+The browser app is written using the React framework. Node.js needs to be installed to generate a build: \url{https://nodejs.org} 
+\begin{verbatim}
+cd app
+npm install
+npm run build
+\end{verbatim}
+This generates a static build that is served by the integrated Python Flask server.  
+
+\section{Run PyThesis}
+The software can be started using:
+\begin{verbatim}
+python start.py --project_root <project_root>
+\end{verbatim}
+On Linux use python3 instead. <project\_root> should be replaced with an absolute project path. In order to test the framework and the browser app point <project\_root> to the example project. A new project should match the layout of the example.

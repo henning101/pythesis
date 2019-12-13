@@ -1,0 +1,10 @@
+\section{Subincludes}
+\label{sec:subincludes}
+PyThesis uses jinja2 and provides a subinclude extension which allows for relative includes. This way LaTeX projects can be structured in much smaller files just like in software projects (there is some native \LaTeX way of doing this but I found this way to be much more convenient). The following example shows a way to organize sub- and subsubsections in a nested fashion. It is of course possible to add further levels, for example, to organize figures and graphics code. The following command includes a tex file which in turn subincludes another tex file:
+\begin{verbatim}
+{% raw %}
+{% subinclude 'subsections/a-subsection' %}
+{% endraw %}
+\end{verbatim}
+The result looks as follows:
+{% subinclude 'subsections/a-subsection' %}

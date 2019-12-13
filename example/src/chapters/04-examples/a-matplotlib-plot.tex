@@ -1,0 +1,18 @@
+\section{A Matplotlib Plot}
+\label{sec:a-matplotlib-plot}
+Python files should be created within a directory called \textbf{py} on the level of the including .tex file. The transpiler creates a folder named \textbf{\_tex} on the same level as the py folder. This folder includes resulting .tex files on the level of the including .tex file. Hence, if on the level of this file there is a directory as follows:
+\begin{verbatim}
+py/a_matplotlib_plot.py
+\end{verbatim}
+then the result can be embedded using:
+{% raw %} % This is necessary so that the example subinclude is not interpreted (remember, this gets done in Python BEFORE it reaches the LaTeX compiler) 
+\begin{verbatim}
+{% subinclude '_tex/a_matplotlib_plot' %}
+\end{verbatim}
+{% endraw %}
+The .tex extension is added automatically. In order to execute Python code to plot or generate illustrations you can use global variables that point to respective project paths. In addition, you can use global objects and classes that can be used to perform common tasks like data set loading. The following is used to create Figure \ref{fig:a_matplotlib_plot}.
+% Use the defined python listing style:
+\begin{python}
+{% subinclude '_tex/a_matplotlib_plot_source' %}
+\end{python}
+{% subinclude '_tex/a_matplotlib_plot' %}

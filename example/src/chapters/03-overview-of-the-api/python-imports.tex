@@ -1,0 +1,15 @@
+\section{Python Imports}
+\label{sec:python-imports}
+PyThesis uses the currently executed file as working directory. Modules on the same level can therefore be imported as:
+\begin{verbatim}
+import _import_me
+\end{verbatim}
+\textbf{Modules to be imported should be prepended with an underscore}. "Underscored" modules are not compiled directly and do not generate their own .tex files. In order for the imported module to have access to all global variables it needs to be wrapped using the \_wrap function. The \_wrap function also ensures that the module is properly reloaded when the code is changed.
+\begin{verbatim}
+import _import_me
+_wrap(_import_me)
+\end{verbatim}
+Import example:
+\begin{verbatim}
+{% subinclude '_tex/imports' %}
+\end{verbatim}

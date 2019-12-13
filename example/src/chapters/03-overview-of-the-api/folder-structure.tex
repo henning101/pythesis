@@ -1,0 +1,14 @@
+\section{Folder Structure}
+\label{sec:folder-structure}
+PyThesis uses the following for a project:
+\begin{verbatim}
+build/ 
+data/
+src/
+templates/
+\end{verbatim}
+\textbf{build} stores the combined, transpiled tex file as well as \LaTeX output files such as the generated PDF. \textbf{data} should hold CSV files that can be loaded using the Dataset class or \_matlab. \textbf{src} should store all \LaTeX and Python source files. \\
+
+\textbf{NOTE: DO NOT EDIT SOURCE FILES IN THE build FOLDER. THEY WILL GET OVERWRITTEN. ALSO .tex FILES IN \_tex FOLDERS UNDER src ARE OVERWRITTEN.} \\
+
+The \emph{templates} folder should contain reusable templates along with their default JSON files.

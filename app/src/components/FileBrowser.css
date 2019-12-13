@@ -1,0 +1,25 @@
+.FileBrowser {
+  background-color: #fff;
+  border-right: 1px solid #ccc;
+  font-size: 13px;
+  color: #555;
+  height: 100%;
+}
+
+.FileBrowser h2 {
+  margin-left: 10px;
+}
+
+.FileBrowser .project {
+  padding: 5px;
+  cursor: pointer;
+}
+
+.FileBrowser .project.selected {
+  background-color: #eee;
+}
+
+.FileBrowser .project:hover {
+  background-color: #eee;
+  color: #5555aa;
+}

@@ -1,0 +1,10 @@
+\section{Jinja}
+\label{sec:jinja}
+PyThesis uses the Python Jinja templating engine for subincludes and to execute Python code. Therefore Jinja API calls in .tex files have an effect. \LaTeX and Jinja make extensive use of curly brackets so in order to avoid clashes, critical \LaTeX sections can be escape using:
+\begin{verbatim}
+{{ '{% raw %}' }}
+I can write whatever I want here, nothing gets interpreted.
+{{ '{% endraw %}' }}
+\end{verbatim}
+
+Jinja documentation: \url{https://jinja.palletsprojects.com/en/2.10.x/}

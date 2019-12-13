@@ -1,0 +1,12 @@
+grid on;
+grid(gca, 'minor');
+ax = gca;
+set(gca, 'Xtick', {{xmin}}:{{xtick}}:{{xmax}});
+ax.XAxis.MinorTickValues = {{xmin}}:{{xtickminor}}:{{xmax}};
+set(gca, "Ytick", {{ymin}}:{{ytick}}:{{ymax}});
+ax.YAxis.MinorTickValues = {{ymin}}:{{ytickminor}}:{{ymax}};
+box on;
+xlim([{{xmin}} {{xmax}}]);
+ylim([{{ymin}} {{ymax}}]);
+xlabel("{{xlabel}}");
+ylabel("{{ylabel}}");

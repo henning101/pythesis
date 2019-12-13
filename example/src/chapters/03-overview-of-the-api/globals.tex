@@ -1,0 +1,27 @@
+\section{Globals}
+\label{sec:globals}
+PyThesis provides the following global variables when executing the .py files in a project:
+\begin{verbatim}
+_matlab     Instance of the MatlabAdapter class
+_templater  Instance of the Templater class 
+_project    Current project root path
+_data       Current data path 
+_build      Current build path 
+_templates  Current templates path 
+_file       File path of the executing .py file 
+_dir        Containing directory of the executing .py file 
+_basename   Basename of the executing .py file 
+_name       Name without extension of the executing .py file 
+\end{verbatim}
+
+The following modules can be accessed without importing:
+\begin{verbatim}
+os          Python core library
+sys         Python core library
+matplotlib  matplotlib module
+_plt        matplotlib.pyplot module
+np          numpy module
+Dataset     PyThesis Dataset class
+_dataset    pythesis.dataset module
+\end{verbatim}
+For an example using \_dataset see the Matplotlib Example, Section \ref{sec:a-matplotlib-plot}.

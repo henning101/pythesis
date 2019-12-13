@@ -1,0 +1,16 @@
+{
+    "xmin": 0,
+    "xmax": 1000,
+    "ymin": 0,
+    "ymax": 10,
+    "xxmin": 0,
+    "xxmax": 10,
+    "xtick": 1000,
+    "xtickminor": 500,
+    "ytick": 5,
+    "ytickminor": 2.5,
+    "ztick": 5,
+    "ztickminor": 1,
+    "xlabel": "-",
+    "ylabel": "-"
+}

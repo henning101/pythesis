@@ -1,0 +1,16 @@
+.Console {
+  background-color: #fff;
+  border-top: 1px solid #ccc;
+  overflow-y: scroll;
+  height: 100%;
+  box-sizing: border-box;  
+}
+
+.Console .output {
+  padding: 10px;
+  color: #555;
+  font-family: monospace;
+  font-size: 11px;
+  white-space: pre;
+
+}

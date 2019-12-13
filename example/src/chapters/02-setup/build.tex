@@ -1,0 +1,13 @@
+\section{Build}
+\label{sec:build}
+In order to build the document press \textbf{b} or click the play button in the web app. At some point, when the project grows bigger you might only want to build specific files that you are working on at the moment. In order to that you can do a partial build by pressing \textbf{p}. During a partial build only .py files listed in an \_.always file in that same directory are executed. All other .py files are ignored during a partial build. 
+
+The examples folder contains an \_.always file with a single entry: a\_simple\_text\_generator. This means a\_simple\_text\_generator.py is always executed during a partial build (during a full build it is executed no matter what). The .py extension is automatically appended. In order to add multiple entries just add them in new lines like so:
+\begin{verbatim}
+file1
+file2
+etc
+\end{verbatim}
+In addition, you can do a "partial execute" by pressing \textbf{e} which is the same as a partial build just that the subsequent \LaTeX build step is omitted. Hence, you won't see updates in the document. 
+
+Python output is always shown in the console (for example the command prompt in Windows).

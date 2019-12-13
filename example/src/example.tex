@@ -1,0 +1,68 @@
+% !TeX encoding=utf8
+% !TeX spellcheck = en-US
+\documentclass[a4paper]{book}
+
+\usepackage[htt]{hyphenat}
+\usepackage[NoDate]{currvita}
+\usepackage{parskip}
+\usepackage{epstopdf}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{lineno,hyperref}
+\usepackage{float}
+\usepackage{array}
+\usepackage{amsmath}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{textcomp}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{color}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{url}
+\usepackage{dcolumn}
+\usepackage{gensymb}
+\usepackage{pdflscape}
+\usepackage{bbding}
+\usepackage{rotating}
+\usepackage{caption}
+\captionsetup[lstlisting]{singlelinecheck=off}
+\usepackage{amssymb}
+\usepackage{gensymb}
+\usepackage[chapter]{algorithm}
+\usepackage{algorithmicx}
+\usepackage{algpseudocode}
+\usepackage{epstopdf}
+\usepackage{tikz,ifthen,xstring,calc,pgf,pgfkeys,pgfopts,pgffor,pgfmath}
+\usetikzlibrary{matrix,chains,positioning,decorations.pathreplacing,arrows}
+\usepackage{array}
+\usepackage{enumitem}
+
+\raggedbottom
+
+{% subinclude 'chapters/python-code-highlighting' %}
+
+% Use Biber for citations:
+\usepackage[
+  style=alphabetic,
+  natbib=true,
+  backend=biber,
+  bibwarn=true,
+  texencoding=utf-8,
+  bibencoding=utf-8,
+]{biblatex} 
+\addbibresource{bib/bibtex.bib}
+\title{PyThesis - A Python Framework for \LaTeX}
+\author{Henning Metzmacher}
+\begin{document}
+\maketitle
+{% subinclude 'chapters/01-abstract' %}
+\tableofcontents
+{% subinclude 'chapters/02-setup' %}
+{% subinclude 'chapters/03-overview-of-the-api' %}
+{% subinclude 'chapters/04-examples' %}
+\printbibliography
+\end{document}
