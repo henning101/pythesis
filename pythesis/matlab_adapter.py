@@ -62,6 +62,9 @@ class MatlabAdapter:
         # Pass data to MATLAB
         self.eng.workspace[name] = matlab_data 
 
+    def matlab_double(self, data):
+        return matlab.double(data)
+
     def eval(self, cmd, nargout=0):
         """ Forwards a MATLAB command to the engine with default number of
         arguments set to 0.
@@ -70,6 +73,7 @@ class MatlabAdapter:
             cmd = cmd.replace("'", "\'")
             self.eng.eval(cmd, nargout=nargout)
         except Exception:
+            self.logger.error(f'Error in command: {cmd}')
             self.logger.error(traceback.format_exc())
 
     def eval_template(self, _path, **args):
