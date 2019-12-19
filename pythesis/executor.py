@@ -3,7 +3,7 @@ import sys
 import logging
 import matplotlib
 import matplotlib.pyplot as _plt
-import numpy as np
+import numpy as _np
 import json
 import importlib
 from io import StringIO
@@ -55,6 +55,7 @@ def _wrap(module):
     module._matlab      = _matlab
     module._templater   = _templater
     module._project     = _project 
+    module._dataset     = _dataset
     module._data        = _data 
     module._build       = _build 
     module._templates   = _templates
@@ -62,6 +63,8 @@ def _wrap(module):
     module._dir         = _dir 
     module._basename    = _basename
     module._name        = _name
+    module._np          = _np
+    module._plt         = _plt
 
 def execute(path):
     global _file

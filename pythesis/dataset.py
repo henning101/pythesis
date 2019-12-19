@@ -81,7 +81,12 @@ class Dataset:
         """
         d = {}
         for key, column in self.columns.items():
-            d[key] = column.data
+            # If exist use the alias as column key: 
+            if 'alias' in column.attr.keys():
+                d[column.attr['alias']] = column.data
+            # Otherwise simply use the column key:
+            else:
+                d[key] = column.data
         return d 
 
 def load_dataset(csv_file, columns=[]):
