@@ -76,17 +76,21 @@ class Dataset:
                             j = j + 1
                 i = i + 1
 
+        # Create a new column dictionary using aliases:
+        aliased = {}
+        for key, column in self.columns.items():
+            if 'alias' in column.attr:
+                aliased[column.attr['alias']] = column
+            else:
+                aliased[key] = column 
+        self.columns = aliased
+
     def to_dict(self):
         """ Returns the dataset as a dictionary.
         """
         d = {}
         for key, column in self.columns.items():
-            # If exist use the alias as column key: 
-            if 'alias' in column.attr.keys():
-                d[column.attr['alias']] = column.data
-            # Otherwise simply use the column key:
-            else:
-                d[key] = column.data
+            d[key] = column.data
         return d 
 
 def load_dataset(csv_file, columns=[]):
