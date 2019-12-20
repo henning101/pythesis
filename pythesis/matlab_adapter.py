@@ -53,12 +53,7 @@ class MatlabAdapter:
                 # We need to transpose the MATLAB double object in order to
                 # create a column vector:
                 matlab_double = self.eng.transpose(matlab.double(data[key]))
-                if 'alias' in column.attr.keys():
-                    # Use an alias:
-                    matlab_data[column.attr['alias']] = matlab_double
-                else:
-                    # Use the key:
-                    matlab_data[key] = matlab_double
+                matlab_data[key] = matlab_double
         # Pass data to MATLAB
         self.eng.workspace[name] = matlab_data 
 
