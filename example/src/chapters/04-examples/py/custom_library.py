@@ -1,4 +1,4 @@
-sys.path.append(_lib)
+sys.path.append(_lib) # Manually add _lib to system path
 # The leading underscore of the _distribution module is only 
 # by convention and not technically necessary. However, it 
 # helps to keep the code clutter free especially when using 
