@@ -20,6 +20,7 @@ _templater  = None
 _project    = None
 _data       = None
 _build      = None
+_lib        = None
 _templates  = None
 _file       = None 
 _dir        = None 
@@ -37,6 +38,7 @@ def init():
     global _project 
     global _data 
     global _build
+    global _lib
     global _templates
     # Initialize the MATLAB adapter:
     if argparser.args.matlab:
@@ -44,11 +46,12 @@ def init():
         _matlab = MatlabAdapter()
         _matlab.connect()
 
-    _project = argparser.args.project_root
-    _data = f'{_project}/data'
-    _build = f'{_project}/build'
-    _templates = f'{_project}/templates'
-    _templater = Templater()
+    _project    = argparser.args.project_root
+    _data       = f'{_project}/data'
+    _build      = f'{_project}/build'
+    _templates  = f'{_project}/templates'
+    _lib        = f'{_project}/lib'
+    _templater  = Templater()
 
 def _wrap(module):
     importlib.reload(module) # Make sure the module is updated
@@ -58,6 +61,7 @@ def _wrap(module):
     module._dataset     = _dataset
     module._data        = _data 
     module._build       = _build 
+    module._lib         = _lib
     module._templates   = _templates
     module._file        = _file
     module._dir         = _dir 

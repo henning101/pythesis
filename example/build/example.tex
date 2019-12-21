@@ -180,6 +180,7 @@ _templater  Instance of the Templater class
 _project    Current project root path
 _data       Current data path 
 _build      Current build path 
+_lib        Current lib path (for custom libraries)
 _templates  Current templates path 
 _file       File path of the executing .py file 
 _dir        Containing directory of the executing .py file 
@@ -315,7 +316,7 @@ columns = [
 csv_file = f'{_data}/example.csv'
 dataset = _dataset.load_dataset(csv_file, columns)
 data = dataset.to_dict()
-fig, ax = _plt.subplots()
+fig, ax = _plt.subplots(figsize=(6, 4))
 ax.plot(data['SECONDS'], data['T_01'])
 ax.plot(data['SECONDS'], data['T_02'])
 ax.set(
@@ -326,6 +327,7 @@ ax.set(
 )
 ax.legend(['Temperature 1', 'Temperature 2'])
 ax.grid()
+_plt.tight_layout()
 fig.savefig(f'{_build}/images/{_name}.pdf')
 figure = _templater.render(
     f'{_templates}/latex/figure.tex',
@@ -414,5 +416,85 @@ print(figure)
   \label{fig:a_matlab_plot}
 \end{center}
 \end{figure}
+\section{Custom Library}
+\label{sec:custom-library}
+This example shows how to create a custom class in the lib directory and use it to create Matplotlib plots.
+\begin{figure}[H]
+\begin{center}
+  \includegraphics[width=\textwidth]{images/normal}
+  \caption{Normal Distribution}
+  \label{fig:normal}
+\end{center}
+\end{figure}
+\begin{figure}[H]
+\begin{center}
+  \includegraphics[width=\textwidth]{images/chisquare}
+  \caption{Chi-Square Distribution}
+  \label{fig:chisquare}
+\end{center}
+\end{figure}
+Distribution classes used in the example (in module lib/\_distributions):
+\begin{python}
+class NormalDistribution:
+    def __init__(self, mu=0, sigma=0.1):
+        self.mu = mu
+        self.sigma = sigma
+   
+    def generate_samples(self, num_samples=1000):
+        return _np.random.normal(self.mu, self.sigma, num_samples)
+
+class ChiSquareDistribution:
+    def __init__(self, df=1):
+        self.df = df
+
+    def generate_samples(self, num_samples=1000):
+        return _np.random.chisquare(self.df, num_samples)
+
+\end{python}
+Plot code:
+\begin{python}
+sys.path.append(_lib)
+# The leading underscore of the _distribution module is only 
+# by convention and not technically necessary. However, it 
+# helps to keep the code clutter free especially when using 
+# short, precise module names that might also be used as as 
+# variable names (without the leading underscore):
+import _distributions
+# Reload the module manually to include latest changes: 
+importlib.reload(_distributions)
+# In order for lib modules to have access to project globals 
+# they also need to be wrapped:
+_wrap(_distributions)
+
+def plot_histogram(samples, label, name):
+    fig, ax = _plt.subplots(figsize=(6, 4))
+    ax.hist(samples, bins=30)
+    ax.set(title='Probability Distributions', ylim=[0, 150])
+    ax.legend([label])
+    ax.grid()
+    _plt.tight_layout()
+    fig.savefig(f'{_build}/images/{name}.pdf')
+    figure = _templater.render(
+        f'{_templates}/latex/figure.tex',
+        path=f'images/{name}',
+        label=f'fig:{name}',
+        caption=label
+    )
+    print(figure)
+
+# Instantiate the distribution classes:
+normal_dist         = _distributions.NormalDistribution()
+chisquared_dist     = _distributions.ChiSquareDistribution()
+# Generate samples:
+normal_samples      = normal_dist.generate_samples(1000)
+chisquare_samples   = chisquared_dist.generate_samples(1000)
+# Set names:
+normal_name         = 'Normal Distribution'
+chisquare_name      = 'Chi-Square Distribution'
+# Plot samples:
+plot_histogram(normal_samples, normal_name, 'normal')
+plot_histogram(chisquare_samples, chisquare_name, 'chisquare')
+
+\end{python}
 \printbibliography
 \end{document}
