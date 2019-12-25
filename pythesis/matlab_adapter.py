@@ -43,6 +43,9 @@ class MatlabAdapter:
         dataset = Dataset(**attr)
         # Load from CSV file using selected columns:
         dataset.from_csv(path, columns)
+        self.insert_dataset(name, dataset)
+
+    def insert_dataset(self, name, dataset):
         # Generate dictionary:
         data = dataset.to_dict()
         # Create a new empty dictionary to pass to MATLAB:

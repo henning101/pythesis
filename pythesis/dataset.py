@@ -85,6 +85,16 @@ class Dataset:
                 aliased[key] = column 
         self.columns = aliased
 
+    def extend(self, dataset):
+        """ This method extends this dataset with another dataset. All column
+        keys in this dataset must be present in the input dataset.
+        """
+        d = dataset.to_dict()
+        for key, column in self.columns.items():
+            # Extend the column using the respective column from the input 
+            # dataset:
+            column.data.extend(d[key])
+
     def to_dict(self):
         """ Returns the dataset as a dictionary.
         """
