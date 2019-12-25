@@ -103,6 +103,15 @@ class Dataset:
             d[key] = column.data
         return d 
 
+def combine(datasets):
+    """ Combines a list of datasets by extending the first dataset with all
+    remaining sets and the returning the first.
+    """
+    first = datasets[0]
+    for i in range(1, len(datasets)):
+        first.extend(datasets[i])
+    return first
+
 def load_dataset(csv_file, columns=[]):
     dataset = Dataset()
     dataset.from_csv(csv_file, columns)
