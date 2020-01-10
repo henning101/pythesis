@@ -38,6 +38,11 @@ class Column:
             # Datatype is anything else:
             self.data.append(item)
 
+    def nan_to_num(self):
+        """ Converts NaN values to 0 and infinite values to large numbers.
+        """
+        self.data = np.nan_to_num(self.data, nan=0)
+
 class Dataset:
     """ Represents a dataset with one or more columns.
     """
@@ -101,7 +106,41 @@ class Dataset:
         d = {}
         for key, column in self.columns.items():
             d[key] = column.data
-        return d 
+        return d
+
+    def crop(self, start, end):
+        """ Crops the dataset in-place using a start and end value.
+        """
+        for key, column in self.columns.items():
+            column.data = column.data[start:end]
+
+    def crop_by_column(self, key, min, max):
+        """ Crops the dataset in-place before the min and after the max value of
+        the respective column. 
+        """
+        column = self.columns[key]
+        start = None
+        end = None
+        # Find the crop indices:
+        for i in range(len(column.data)):
+            value = column.data[i]
+            if value >= min and start == None:
+                start = i 
+            if value >= max and end == None:
+                end = i
+
+        # Default case:
+        if start == None:
+            start = 0
+        if end == None:
+            end = len(self.columns[key].data) - 1
+        self.crop(start, end + 1)
+
+    def nan_to_num(self):
+        """ Executes nan_to_num for all columns of the dataset.
+        """
+        for key, column in self.columns.items():
+            column.nan_to_num()
 
 def combine(datasets):
     """ Combines a list of datasets by extending the first dataset with all
