@@ -60,6 +60,9 @@ class MatlabAdapter:
         # Pass data to MATLAB
         self.eng.workspace[name] = matlab_data 
 
+    def insert_value(self, key, value):
+        self.eng.workspace[key] = float(value)
+
     def matlab_double(self, data):
         return matlab.double(data)
 

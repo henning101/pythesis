@@ -31,6 +31,7 @@ def init_logging():
 if __name__ == '__main__':
     argparser.parse_args()
     args = argparser.args
+    # Initialize logging:
     init_logging()
     logger = logging.getLogger(__name__)
     logger.info('Initializing executor')

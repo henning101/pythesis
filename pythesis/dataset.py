@@ -41,7 +41,7 @@ class Column:
     def nan_to_num(self):
         """ Converts NaN values to 0 and infinite values to large numbers.
         """
-        self.data = np.nan_to_num(self.data, nan=0)
+        self.data = list(np.nan_to_num(self.data, nan=0))
 
 class Dataset:
     """ Represents a dataset with one or more columns.
