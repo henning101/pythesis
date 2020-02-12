@@ -1,9 +1,9 @@
 # PyThesis - A LaTeX Framework
+**[Example PDF file with the PyThesis Manual](example/build/example.pdf)**
+
 [Video Example: Looping through a JSON file and plotting using Matplotlib](https://youtu.be/g0fGwuFZDag)
 
 *Note: It is better if your project resides in its own folder and has its own Github repository (unlike shown in the video). This way you can push and pull updates independently.*
-
-[Example PDF file with the PyThesis Manual](example/build/example.pdf)
 
 [Installation guide for Windows](https://docs.google.com/presentation/d/1kPXetbG12Zg8_9tIBIk515eZrqYwrhyiNzSFq9PK8RU/edit?usp=sharing)
 
