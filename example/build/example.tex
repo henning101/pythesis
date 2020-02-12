@@ -472,34 +472,49 @@ max & 33.2 & 34.9 \\
 
 Python code to generate the table:
 \begin{python}
+rows = []
 columns = [
     {'key': 'SECONDS'},
     {'key': 'T_01'},
     {'key': 'T_02'}
 ]
-csv_file = f'{_data}/example.csv'
-dataset = _dataset.load_dataset(csv_file, columns)
-data = dataset.to_dict()
-fig, ax = _plt.subplots(figsize=(6, 4))
-ax.plot(data['SECONDS'], data['T_01'])
-ax.plot(data['SECONDS'], data['T_02'])
-ax.set(
-    xlabel='Time [s]',
-    ylabel='Temperature [\u00b0C]',
-    title='A Matplotlib Plot',
-    ylim=[30, 40]
+dataset = _dataset.load_dataset(
+    f'{_data}/example.csv', 
+    columns=columns
 )
-ax.legend(['Temperature 1', 'Temperature 2'])
-ax.grid()
-_plt.tight_layout()
-fig.savefig(f'{_build}/images/{_name}.pdf')
-figure = _templater.render(
-    f'{_templates}/latex/figure.tex',
-    path=f'images/{_name}',
-    label=f'fig:{_name}',
-    caption='A Matplotlib Plot'
+
+# Extract a matrix and the metrics from the dataset:
+matrix = dataset.to_matrix(['SECONDS', 'T_01', 'T_02'])
+metrics = dataset.metrics(['T_01', 'T_02'])
+
+# Create LaTeX table rows from values:
+for row in matrix:
+    rows.append(' & '.join(map(str, row)) + ' \\\\')
+
+# Add a line between the values and the metrics:
+rows.append('\\midrule')
+
+# Map values to strings so we can join them:
+means   = map(str, metrics['mean'])
+stds    = map(str, metrics['std'])
+medians = map(str, metrics['median'])
+mins    = map(str, metrics['min'])
+maxs    = map(str, metrics['max'])
+
+# Create LaTex table rows from metrics:
+rows.append('\mu & '    + ' & '.join(means)   + ' \\\\')
+rows.append('\sigma & ' + ' & '.join(stds)    + ' \\\\')
+rows.append('median & ' + ' & '.join(medians) + ' \\\\')
+rows.append('min & '    + ' & '.join(mins)    + ' \\\\')
+rows.append('max & '    + ' & '.join(maxs)    + ' \\\\')
+
+# Render the table:
+table = _templater.render(
+    f'./a_table.tex',
+    rows=' \n'.join(rows),
+    name=f'a_table'
 )
-print(figure)
+print(table)
 
 \end{python}
 \section{Custom Library}
