@@ -90,6 +90,24 @@ class Dataset:
                 aliased[key] = column 
         self.columns = aliased
 
+    def from_row_matrix(self, keys, row_matrix):
+        """ Initializes the dataset from a key array and a row matrix
+        Example:
+            keys        = ['A', 'B', 'C']
+            row_matrix  = [
+                [10, 20, 30],
+                [20, 30, 40]
+            ]
+        """
+        # Create columns:
+        self.columns = OrderedDict()
+        for key in keys:
+            self.columns[key] = Column({'key': key})
+
+        for i in range(len(row_matrix)): # Iterate through rows
+            for j in range(len(keys)): # Iterate through columns
+                self.columns[keys[j]].append(row_matrix[i][j])
+
     def extend(self, dataset):
         """ This method extends this dataset with another dataset. All column
         keys in this dataset must be present in the input dataset.
@@ -99,6 +117,11 @@ class Dataset:
             # Extend the column using the respective column from the input 
             # dataset:
             column.data.extend(d[key])
+
+    def column_data(self, key):
+        """ Returns the data of a single column.
+        """
+        return self.columns[key].data
 
     def to_dict(self):
         """ Returns the dataset as a dictionary.
