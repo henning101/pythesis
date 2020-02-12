@@ -5,6 +5,7 @@ from flask import render_template
 from flask_cors import CORS
 import pythesis.argparser as argparser
 from pythesis.transpiler import Transpiler
+from pythesis.compiler import Compiler
 
 app = Flask(
     __name__, 
@@ -39,11 +40,8 @@ def full_build():
     args = argparser.args
     transpiler = Transpiler()
     transpiler.transpile(full=True)
-    # Build using pdflatex:
-    os.chdir(os.path.join(args.project_root, 'build'))
-    os.system(f'pdflatex {args.main_document}.tex -interaction=nonstopmode')
-    # Change back into pythesis directory:
-    os.chdir(os.path.dirname(os.path.realpath(__file__)))
+    compiler = Compiler()
+    compiler.compile()
     return 'Done'
 
 @app.route('/partial_build')
@@ -51,11 +49,8 @@ def partial_build():
     args = argparser.args
     transpiler = Transpiler()
     transpiler.transpile(full=False)
-    # Build using pdflatex:
-    os.chdir(os.path.join(args.project_root, 'build'))
-    os.system(f'pdflatex {args.main_document}.tex -interaction=nonstopmode')
-    # Change back into pythesis directory:
-    os.chdir(os.path.dirname(os.path.realpath(__file__)))
+    compiler = Compiler()
+    compiler.compile()
     return 'Done'
 
 @app.route('/partial_execute')

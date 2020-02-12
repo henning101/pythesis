@@ -107,6 +107,40 @@ class Dataset:
         for key, column in self.columns.items():
             d[key] = column.data
         return d
+    
+    def to_matrix(self, keys):
+        """ Returns the dataset as a matrix. Only includes columns specified by
+        the keys parameter.
+        """
+        matrix = []
+        d = self.to_dict()
+        for i in range(len(d[keys[0]])):
+            row = []
+            for key in keys:
+                row.append(d[key][i])
+            matrix.append(row)
+        return matrix
+
+    def metrics(self, keys, digits=2):
+        """ Returns a dictionary of rows of calculated dataset metrics. Only
+        includes columns specified by the keys parameter.
+        """
+        d = self.to_dict()
+        metrics = {
+            'mean':     [],
+            'std':      [],
+            'median':   [],
+            'min':      [],
+            'max':      []
+        }
+        for key in keys:
+            values = d[key]
+            metrics['mean'].append(round(np.mean(values), digits))
+            metrics['std'].append(round(np.std(values), digits))
+            metrics['median'].append(round(np.median(values), digits))
+            metrics['min'].append(round(min(values), digits))
+            metrics['max'].append(round(max(values), digits))
+        return metrics
 
     def crop(self, start, end):
         """ Crops the dataset in-place using a start and end value.

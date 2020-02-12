@@ -1,13 +1,35 @@
 \section{Build}
 \label{sec:build}
-In order to build the document press \textbf{b} or click the play button in the web app. At some point, when the project grows bigger you might only want to build specific files that you are working on at the moment. In order to that you can do a partial build by pressing \textbf{p}. During a partial build only .py files listed in an \_.always file in that same directory are executed. All other .py files are ignored during a partial build. 
+In order to \textbf{build} the document press \textbf{b} or click the play button in the web app. This executes all .py files and generates .tex files from them, merges them into one output document in the build directory and compiles it using the pdflatex (the exact order of build commands is defined in the build.config in the PyThesis root directory, each line is a single command). At some point, when the project grows bigger you might only want to build specific files that you are working on at the moment. In order to that you can do a \textbf{partial build} by pressing \textbf{p}.  
 
-The examples folder contains an \_.always file with a single entry: a\_simple\_text\_generator. This means a\_simple\_text\_generator.py is always executed during a partial build (during a full build it is executed no matter what). The .py extension is automatically appended. In order to add multiple entries just add them in new lines like so:
+\subsection{\_.always Files}
+During a \textbf{partial build} only .py files listed in an \_.always file in that same directory are executed. All other .py files are ignored during a \textbf{partial build}. If, for example, the examples folder contains an \_.always file with a single entry: 
+\begin{verbatim}
+a_simple_text_generator
+\end{verbatim}
+this means a\_simple\_text\_generator.py is always executed during a \textbf{partial build} (during a full build it is executed no matter what). The .py extension is automatically appended. In order to add multiple entries just add them in new lines like so:
 \begin{verbatim}
 file1
 file2
 etc
 \end{verbatim}
-In addition, you can do a "partial execute" by pressing \textbf{e} which is the same as a partial build just that the subsequent \LaTeX build step is omitted. Hence, you won't see updates in the document. 
+In addition, you can do a \textbf{partial execute} by pressing \textbf{e} which is the same as a \textbf{partial build} just that the subsequent \LaTeX build step is omitted. Hence, you won't see updates in the document. 
 
 Python output is always shown in the console (for example the command prompt in Windows).
+
+Table \ref{tab:shortcuts} shows an overview over the build shortcuts in the web application:
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{l|l}
+\toprule
+Shortcut & Command \\
+\midrule
+\textbf{b} & \textbf{Full build} (execute all .py files + compilation) \\
+\textbf{p} & \textbf{Partial build} (execute only .py files listed in \_.always files + compilation) \\
+\textbf{e} & \textbf{Partial execute} (execute only .py files listed in \_.always files) \\
+\bottomrule
+\end{tabular}
+\caption{Overview over the build shortcuts in the web application}
+\label{tab:shortcuts}
+\end{center}
+\end{table}
