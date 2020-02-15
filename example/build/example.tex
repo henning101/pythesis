@@ -492,6 +492,26 @@ hold off
   \label{fig:a_matlab_plot}
 \end{center}
 \end{figure}
+
+\subsection{MATLAB Inline Evals}
+The example uses templates to execute MATLAB code. It is of course also possible to execute MATLAB code directly. For example:
+\begin{python}
+_matlab.eval('x = [0.2 0.3 0.4];')
+_matlab.eval('plot(x);')
+\end{python}
+For multiple lines of code you can do:
+\begin{python}
+name = 'My Plot'
+code = f'''
+    hold on;
+    x = [0.2 0.3 0.4];
+    plot(x);
+    legend(['x']);
+    title('{name}');
+'''
+_matlab.eval(code)
+\end{python}
+Note that Python f-strings use \textbf{single} curly brackets for variable replacement while Jinja strings use \textbf{double} curly brackets (this can result in a fun character escaping mess).
 \section{A Table}
 \label{sec:a-table}
 This example shows how to load a CSV file into a dataset and display it as a table. In addition, the dataset metrics function can be used to calculate statistical metrics from the data and append it to the table.
