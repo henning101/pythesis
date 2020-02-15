@@ -171,7 +171,7 @@ class Dataset:
         for key, column in self.columns.items():
             column.data = column.data[start:end]
 
-    def crop_by_column(self, key, min, max):
+    def crop_by_column(self, key, _min, _max):
         """ Crops the dataset in-place before the min and after the max value of
         the respective column. 
         """
@@ -181,9 +181,9 @@ class Dataset:
         # Find the crop indices:
         for i in range(len(column.data)):
             value = column.data[i]
-            if value >= min and start == None:
+            if value >= _min and start == None:
                 start = i 
-            if value >= max and end == None:
+            if value >= _max and end == None:
                 end = i
 
         # Default case:

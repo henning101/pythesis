@@ -10,20 +10,10 @@ if not(_matlab == None):
         f'{_templates}/matlab/figure.m',
         height=300
     )
-    code = f'''
-        hold on;
-        p1 = plot( ...
-            {_name}.SECONDS, ...
-            {_name}.T_01, 'Color',  ...
-            'k', 'LineWidth', 1);
-        p2 = plot({_name}.SECONDS, ...
-            {_name}.T_02, ...
-            '--', 'Color', 'k', 'LineWidth', 1);
-        title('A MATLAB Plot');
-        legend([p1, p2], 'Temperature 1', 'Temperature 2');
-        hold off
-    '''
-    _matlab.eval(code)
+    _matlab.eval_template(
+        './a_matlab_plot.m',
+        name=_name
+    )
     _matlab.eval_template(
         f'{_templates}/matlab/axis.m',
         xlabel='Time [s]',
