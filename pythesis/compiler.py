@@ -19,7 +19,8 @@ class Compiler:
         os.chdir(os.path.join(os.path.dirname(os.path.realpath(__file__)), '..'))
 
     def load_build_config(self):
-        with open('./build.config') as f:
+        #with open('./build.config') as f:
+        with open(self.args.build_config) as f:
             template = Template(f.read())
             template = template.render(main_document=self.args.main_document)
         return template.splitlines()
