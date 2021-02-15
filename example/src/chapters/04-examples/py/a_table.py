@@ -28,8 +28,8 @@ mins    = map(str, metrics['min'])
 maxs    = map(str, metrics['max'])
 
 # Create LaTex table rows from metrics:
-rows.append('\mu & '    + ' & '.join(means)   + ' \\\\')
-rows.append('\sigma & ' + ' & '.join(stds)    + ' \\\\')
+rows.append('$\mu$ & '    + ' & '.join(means)   + ' \\\\')
+rows.append('$\sigma$ & ' + ' & '.join(stds)    + ' \\\\')
 rows.append('median & ' + ' & '.join(medians) + ' \\\\')
 rows.append('min & '    + ' & '.join(mins)    + ' \\\\')
 rows.append('max & '    + ' & '.join(maxs)    + ' \\\\')

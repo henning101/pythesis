@@ -32,6 +32,13 @@ def parse_args():
         required=True
     )
     argparser.add_argument(
+        '--build_config',
+        action='store',
+        dest='build_config',
+        help='Build config file',
+        default='./build.config'
+    )
+    argparser.add_argument(
         '--main_document',
         action='store',
         dest='main_document',
