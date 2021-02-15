@@ -66,4 +66,11 @@ def parse_args():
         dest='debug',
         help='Enables debug mode (avoids Flask reloads)',
     )
+    argparser.add_argument(
+        '--build_config',
+        action='store',
+        dest='build_config',
+        help='LaTeX build config path',
+        default='./build.config'
+    )
     args = argparser.parse_args()
